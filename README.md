@@ -20,9 +20,19 @@
 
 I specialize in architecting distributed enterprise backend systems, scalable relational databases, and modern component-driven web interfaces. My engineering philosophy revolves around **Clean Architecture**, **Domain-Driven Design (DDD)**, and strict separation of concerns — delivering high-throughput, maintainable software ecosystems built with **C#**, **.NET 8 / ASP.NET Core**, **Entity Framework Core**, **SQL Server**, and **Blazor WebAssembly**.
 
+<br/>
+
+<div align="center">
+  <img src="assets/telemetry.svg" width="100%" alt="System Telemetry &amp; Engineering Standards" />
+</div>
+
+<br/>
+
 ---
 
 <img src="assets/section-enterprise.svg" width="100%" alt="01 — Enterprise &amp; Distributed Systems" />
+
+<br/>
 
 <div align="center">
   <table width="100%" border="0" cellspacing="10" cellpadding="0">
@@ -41,9 +51,13 @@ I specialize in architecting distributed enterprise backend systems, scalable re
   </table>
 </div>
 
+<br/>
+
 ---
 
 <img src="assets/section-interfaces.svg" width="100%" alt="02 — Client Experiences &amp; Web Interfaces" />
+
+<br/>
 
 <div align="center">
   <table width="100%" border="0" cellspacing="10" cellpadding="0">
@@ -61,6 +75,8 @@ I specialize in architecting distributed enterprise backend systems, scalable re
     </tr>
   </table>
 </div>
+
+<br/>
 
 ---
 

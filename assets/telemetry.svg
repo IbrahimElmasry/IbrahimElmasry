@@ -1,184 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="Live telemetry — design metrics dashboard">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 110" width="100%" height="auto" role="img" aria-label="System Telemetry">
   <defs>
-    <linearGradient id="tbg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"  stop-color="#0c0631"/>
-      <stop offset="100%" stop-color="#03030d"/>
+    <linearGradient id="tel-bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0B0F19" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#0B0F19" />
     </linearGradient>
-    <linearGradient id="cyanFill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"  stop-color="#22d3ee" stop-opacity=".7"/>
-      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    <linearGradient id="tel-border" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.5" />
+      <stop offset="50%" stop-color="#512BD4" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.5" />
     </linearGradient>
-    <linearGradient id="violetFill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"  stop-color="#a78bfa" stop-opacity=".7"/>
-      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="magentaFill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"  stop-color="#f472b6" stop-opacity=".7"/>
-      <stop offset="100%" stop-color="#f472b6" stop-opacity="0"/>
-    </linearGradient>
-    <filter id="tg" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2"/>
-      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="tg2" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="6"/>
-    </filter>
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#a78bfa" stroke-opacity=".08" stroke-width="1"/>
-    </pattern>
   </defs>
 
-  <rect width="1200" height="360" fill="url(#tbg)"/>
-  <rect width="1200" height="360" fill="url(#grid)"/>
+  <style>
+    
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes spin-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+@keyframes pulse-slow { 0%, 100% { opacity: 0.35; transform: scale(1); } 50% { opacity: 0.9; transform: scale(1.06); } }
+@keyframes ping-radar { 0% { r: 4px; opacity: 0.95; stroke-width: 2; } 70% { r: 13px; opacity: 0; stroke-width: 0.5; } 100% { r: 13px; opacity: 0; stroke-width: 0; } }
+@keyframes dash-flow { to { stroke-dashoffset: -400; } }
+@keyframes laser-beam { 0% { transform: translateX(-220px); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateX(1280px); opacity: 0; } }
+@keyframes border-trace { 0% { stroke-dashoffset: 1300; } 100% { stroke-dashoffset: 0; } }
+@keyframes float-gentle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes blink-led { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; }
+}
 
-  <!-- ambient glows -->
-  <circle cx="180" cy="180" r="120" fill="#22d3ee" opacity=".10" filter="url(#tg2)"/>
-  <circle cx="600" cy="180" r="160" fill="#a78bfa" opacity=".12" filter="url(#tg2)"/>
-  <circle cx="1020" cy="180" r="120" fill="#f472b6" opacity=".10" filter="url(#tg2)"/>
+    .tel-led { animation: blink-led 1.8s ease-in-out infinite; }
+    .ping { animation: ping-radar 2s cubic-bezier(0, 0.2, 0.8, 1) infinite; }
+  </style>
 
-  <!-- top bar -->
-  <g transform="translate(40 36)" font-family="JetBrains Mono, ui-monospace, Menlo, Consolas, monospace">
-    <text fill="#94a3b8" font-size="11" letter-spacing="6">/// LIVE TELEMETRY · ANALYTICS WORKBENCH</text>
-    <circle cx="180" cy="-4" r="3" fill="#22d3ee">
-      <animate attributeName="opacity" values=".3;1;.3" dur="1.6s" repeatCount="indefinite"/>
-    </circle>
-  </g>
-  <g transform="translate(1160 36)" font-family="JetBrains Mono, ui-monospace, Menlo, Consolas, monospace" text-anchor="end">
-    <text fill="#94a3b8" font-size="11" letter-spacing="3">SESSION · 2026.05 · CAIRO</text>
-  </g>
+  <!-- Background -->
+  <rect width="900" height="110" rx="10" fill="url(#tel-bg)" stroke="url(#tel-border)" stroke-width="1.2" />
 
-  <!-- THREE PANELS -->
-
-  <!-- Panel A: SIGNAL — animated waveform -->
-  <g transform="translate(40 70)">
-    <rect width="360" height="240" rx="14" fill="#0b0427" stroke="#f472b6" stroke-opacity=".5"/>
-    <text x="20" y="32" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" letter-spacing="3" fill="#94a3b8">// DATA · SIGNAL</text>
-    <text x="20" y="62" font-family="Inter, sans-serif" font-size="32" font-weight="700" fill="#f472b6">98.4<tspan font-size="14" fill="#94a3b8">%</tspan></text>
-    <text x="20" y="82" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10" fill="#cbd5e1" letter-spacing="2">CLEAN · TRUSTED · DECISION-READY</text>
-
-    <!-- waveform area -->
-    <path fill="url(#magentaFill)" stroke="#f472b6" stroke-width="1.6" filter="url(#tg)"
-          d="M 20 200
-             L 50 180 L 80 190 L 110 160 L 140 175 L 170 140 L 200 165
-             L 230 130 L 260 155 L 290 120 L 320 145 L 340 130
-             L 340 220 L 20 220 Z">
-      <animate attributeName="d" dur="6s" repeatCount="indefinite"
-        values="
-          M 20 200 L 50 180 L 80 190 L 110 160 L 140 175 L 170 140 L 200 165 L 230 130 L 260 155 L 290 120 L 320 145 L 340 130 L 340 220 L 20 220 Z;
-          M 20 200 L 50 165 L 80 175 L 110 145 L 140 165 L 170 130 L 200 150 L 230 115 L 260 140 L 290 105 L 320 130 L 340 115 L 340 220 L 20 220 Z;
-          M 20 200 L 50 180 L 80 190 L 110 160 L 140 175 L 170 140 L 200 165 L 230 130 L 260 155 L 290 120 L 320 145 L 340 130 L 340 220 L 20 220 Z"/>
-    </path>
-
-    <!-- Traveling indicator dot -->
-    <circle r="4" fill="#f472b6" filter="url(#tg)">
-      <animate attributeName="cx" values="20;340;20" dur="6s" repeatCount="indefinite"/>
-      <animate attributeName="cy" values="200;130;200" dur="6s" repeatCount="indefinite"/>
-    </circle>
-  </g>
-
-  <!-- Panel B: CORE METRICS — animated bars -->
-  <g transform="translate(420 70)">
-    <rect width="360" height="240" rx="14" fill="#0b0427" stroke="#a78bfa" stroke-opacity=".5"/>
-    <text x="20" y="32" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" letter-spacing="3" fill="#94a3b8">// PIPELINE · CRAFT · METRICS</text>
-
-    <!-- 5 vertical bars -->
-    <g transform="translate(40 100)">
-      <g>
-        <rect x="0" y="0" width="36" height="120" rx="6" fill="#0c0631" stroke="#a78bfa" stroke-opacity=".4"/>
-        <rect x="0" y="120" width="36" height="0" rx="6" fill="url(#violetFill)">
-          <animate attributeName="height" values="0;100;82;100;90" dur="4s" repeatCount="indefinite"/>
-          <animate attributeName="y" values="120;20;38;20;30" dur="4s" repeatCount="indefinite"/>
-        </rect>
-        <text x="18" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#94a3b8">SQL</text>
-      </g>
-      <g transform="translate(60 0)">
-        <rect x="0" y="0" width="36" height="120" rx="6" fill="#0c0631" stroke="#a78bfa" stroke-opacity=".4"/>
-        <rect x="0" y="120" width="36" height="0" rx="6" fill="url(#violetFill)">
-          <animate attributeName="height" values="0;88;112;100;76" dur="4s" begin="-0.4s" repeatCount="indefinite"/>
-          <animate attributeName="y" values="120;32;8;20;44" dur="4s" begin="-0.4s" repeatCount="indefinite"/>
-        </rect>
-        <text x="18" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#94a3b8">BI</text>
-      </g>
-      <g transform="translate(120 0)">
-        <rect x="0" y="0" width="36" height="120" rx="6" fill="#0c0631" stroke="#a78bfa" stroke-opacity=".4"/>
-        <rect x="0" y="120" width="36" height="0" rx="6" fill="url(#violetFill)">
-          <animate attributeName="height" values="0;72;90;110;86" dur="4s" begin="-0.8s" repeatCount="indefinite"/>
-          <animate attributeName="y" values="120;48;30;10;34" dur="4s" begin="-0.8s" repeatCount="indefinite"/>
-        </rect>
-        <text x="18" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#94a3b8">EDA</text>
-      </g>
-      <g transform="translate(180 0)">
-        <rect x="0" y="0" width="36" height="120" rx="6" fill="#0c0631" stroke="#a78bfa" stroke-opacity=".4"/>
-        <rect x="0" y="120" width="36" height="0" rx="6" fill="url(#violetFill)">
-          <animate attributeName="height" values="0;100;94;88;104" dur="4s" begin="-1.2s" repeatCount="indefinite"/>
-          <animate attributeName="y" values="120;20;26;32;16" dur="4s" begin="-1.2s" repeatCount="indefinite"/>
-        </rect>
-        <text x="18" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#94a3b8">VIZ</text>
-      </g>
-      <g transform="translate(240 0)">
-        <rect x="0" y="0" width="36" height="120" rx="6" fill="#0c0631" stroke="#a78bfa" stroke-opacity=".4"/>
-        <rect x="0" y="120" width="36" height="0" rx="6" fill="url(#violetFill)">
-          <animate attributeName="height" values="0;112;100;86;94" dur="4s" begin="-1.6s" repeatCount="indefinite"/>
-          <animate attributeName="y" values="120;8;20;34;26" dur="4s" begin="-1.6s" repeatCount="indefinite"/>
-        </rect>
-        <text x="18" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#94a3b8">UI</text>
-      </g>
+  <!-- Telemetry Row Items -->
+  <g transform="translate(30, 24)">
+    <!-- Metric 1: Architecture -->
+    <g transform="translate(0, 0)">
+      <circle cx="6" cy="6" r="3" fill="#10B981" />
+      <circle cx="6" cy="6" r="3" fill="none" stroke="#10B981" class="ping" />
+      <text x="18" y="9" font-family="'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace" font-size="11" font-weight="600" fill="#38BDF8" letter-spacing="1">ARCHITECTURAL DISCIPLINE</text>
+      <text x="18" y="28" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#F1F5F9">Clean Architecture &amp; DDD</text>
+      <text x="18" y="44" font-family="'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#64748B">Decoupled Domain &amp; CQRS</text>
     </g>
-  </g>
 
-  <!-- Panel C: RADAR / PULSE -->
-  <g transform="translate(800 70)">
-    <rect width="360" height="240" rx="14" fill="#0b0427" stroke="#22d3ee" stroke-opacity=".5"/>
-    <text x="20" y="32" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" letter-spacing="3" fill="#94a3b8">// FRONTEND · PULSE</text>
-
-    <g transform="translate(180 130)">
-      <!-- radar rings -->
-      <circle r="20" fill="none" stroke="#22d3ee" stroke-opacity=".3"/>
-      <circle r="40" fill="none" stroke="#22d3ee" stroke-opacity=".3"/>
-      <circle r="60" fill="none" stroke="#22d3ee" stroke-opacity=".3"/>
-      <circle r="80" fill="none" stroke="#22d3ee" stroke-opacity=".3"/>
-      <line x1="-90" y1="0" x2="90" y2="0" stroke="#22d3ee" stroke-opacity=".25"/>
-      <line x1="0" y1="-90" x2="0" y2="90" stroke="#22d3ee" stroke-opacity=".25"/>
-
-      <!-- sweeping radar -->
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="4s" repeatCount="indefinite"/>
-        <path d="M 0 0 L 90 0 A 90 90 0 0 1 70 56 Z" fill="url(#cyanFill)" opacity=".55"/>
-        <line x1="0" y1="0" x2="90" y2="0" stroke="#22d3ee" stroke-width="1.5" filter="url(#tg)"/>
-      </g>
-
-      <!-- detected blips -->
-      <circle cx="-50" cy="22" r="3" fill="#22d3ee">
-        <animate attributeName="opacity" values=".2;1;.2" dur="1.6s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="38" cy="-44" r="3" fill="#22d3ee">
-        <animate attributeName="opacity" values=".2;1;.2" dur="2.1s" begin="-0.5s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="-22" cy="-58" r="3" fill="#22d3ee">
-        <animate attributeName="opacity" values=".2;1;.2" dur="1.8s" begin="-1s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="62" cy="32" r="3" fill="#22d3ee">
-        <animate attributeName="opacity" values=".2;1;.2" dur="2.4s" begin="-1.4s" repeatCount="indefinite"/>
-      </circle>
-
-      <!-- center node -->
-      <circle r="5" fill="#22d3ee" filter="url(#tg)"/>
+    <!-- Metric 2: Primary Runtime -->
+    <g transform="translate(250, 0)">
+      <circle cx="6" cy="6" r="3" fill="#38BDF8" class="tel-led" />
+      <text x="18" y="9" font-family="'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace" font-size="11" font-weight="600" fill="#38BDF8" letter-spacing="1">PRIMARY RUNTIME</text>
+      <text x="18" y="28" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#F1F5F9">.NET 8 / 9 &amp; ASP.NET Core</text>
+      <text x="18" y="44" font-family="'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#64748B">High-Throughput Web APIs</text>
     </g>
-  </g>
 
-  <!-- bottom legend bar -->
-  <g transform="translate(40 332)" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10" fill="#94a3b8" letter-spacing="2">
-    <text x="0">DATA · BI</text>
-    <text x="380">PIPELINE · METRICS</text>
-    <text x="760">FRONTEND · STRONG_BG</text>
-    <text x="1120" text-anchor="end">— BUILD: HOLO-DATA ◆</text>
-  </g>
+    <!-- Metric 3: Modern UI -->
+    <g transform="translate(500, 0)">
+      <circle cx="6" cy="6" r="3" fill="#A855F7" class="tel-led" style="animation-delay: -0.6s;" />
+      <text x="18" y="9" font-family="'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace" font-size="11" font-weight="600" fill="#38BDF8" letter-spacing="1">UI &amp; FULL STACK</text>
+      <text x="18" y="28" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#F1F5F9">Blazor WebAssembly</text>
+      <text x="18" y="44" font-family="'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#64748B">Component Lifecycle &amp; WASM</text>
+    </g>
 
-  <!-- bracket frame -->
-  <g stroke="#22d3ee" stroke-width="1.4" fill="none" opacity=".55">
-    <polyline points="20,20 20,60 60,60"/>
-    <polyline points="1180,20 1180,60 1140,60"/>
-    <polyline points="20,340 20,300 60,300"/>
-    <polyline points="1180,340 1180,300 1140,300"/>
+    <!-- Metric 4: Relational Engine -->
+    <g transform="translate(710, 0)">
+      <circle cx="6" cy="6" r="3" fill="#10B981" class="tel-led" style="animation-delay: -1.2s;" />
+      <text x="18" y="9" font-family="'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace" font-size="11" font-weight="600" fill="#38BDF8" letter-spacing="1">DATA PERSISTENCE</text>
+      <text x="18" y="28" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#F1F5F9">SQL Server &amp; EF Core</text>
+      <text x="18" y="44" font-family="'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#64748B">Optimized Indexing &amp; LINQ</text>
+    </g>
   </g>
 </svg>

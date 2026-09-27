@@ -6,23 +6,50 @@
       <stop offset="100%" stop-color="#070A11" />
     </linearGradient>
     <linearGradient id="card-border-erp" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.65" />
-      <stop offset="40%" stop-color="#38BDF8" stop-opacity="0.15" />
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.75" />
+      <stop offset="40%" stop-color="#38BDF8" stop-opacity="0.2" />
       <stop offset="100%" stop-color="#334155" stop-opacity="0.3" />
     </linearGradient>
-    <radialGradient id="card-glow-erp" cx="0%" cy="0%" r="60%">
-      <stop offset="0%" stop-color="#0284C7" stop-opacity="0.16" />
+    <radialGradient id="card-glow-erp" cx="0%" cy="0%" r="65%">
+      <stop offset="0%" stop-color="#0284C7" stop-opacity="0.22" />
       <stop offset="100%" stop-color="#0B0F19" stop-opacity="0" />
     </radialGradient>
   </defs>
+
+  <style>
+    
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes spin-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+@keyframes pulse-slow { 0%, 100% { opacity: 0.35; transform: scale(1); } 50% { opacity: 0.9; transform: scale(1.06); } }
+@keyframes ping-radar { 0% { r: 4px; opacity: 0.95; stroke-width: 2; } 70% { r: 13px; opacity: 0; stroke-width: 0.5; } 100% { r: 13px; opacity: 0; stroke-width: 0; } }
+@keyframes dash-flow { to { stroke-dashoffset: -400; } }
+@keyframes laser-beam { 0% { transform: translateX(-220px); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateX(1280px); opacity: 0; } }
+@keyframes border-trace { 0% { stroke-dashoffset: 1300; } 100% { stroke-dashoffset: 0; } }
+@keyframes float-gentle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes blink-led { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; }
+}
+
+    .card-tracer {
+      stroke-dasharray: 80 570;
+      animation: border-trace 8s linear infinite;
+    }
+    .pulse-core { animation: pulse-slow 3s ease-in-out infinite; }
+    .led-blink { animation: blink-led 1.2s ease-in-out infinite; }
+  </style>
 
   <!-- Card Background -->
   <rect width="440" height="210" rx="12" fill="url(#card-grad-erp)" />
   <rect width="440" height="210" rx="12" fill="url(#card-glow-erp)" />
   <rect width="440" height="210" rx="12" fill="none" stroke="url(#card-border-erp)" stroke-width="1.2" />
 
+  <!-- Animated Neon Border Trail -->
+  <rect x="1" y="1" width="438" height="208" rx="11" fill="none" stroke="#38BDF8" stroke-width="1.8" class="card-tracer" opacity="0.85" />
+
   <!-- Top bar / icon badge -->
   <g transform="translate(24, 22)">
+    <!-- Icon Container with Breathing Glow -->
     <rect width="40" height="40" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1" />
     <g transform="translate(0, 0)">
       
@@ -32,14 +59,20 @@
           <path d="M6 19v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8" />
           <circle cx="28" cy="27" r="8" fill="#0B0F19" stroke="#38BDF8" stroke-width="1.5" />
           <path d="M28 23v8 M24 27h8" stroke="#38BDF8" stroke-width="1.5" />
+          <!-- Activity LED -->
+          <circle cx="12" cy="11" r="1.5" fill="#10B981" class="led-blink" />
+          <circle cx="12" cy="19" r="1.5" fill="#38BDF8" class="led-blink" style="animation-delay: -0.5s;" />
         </g>
     </g>
 
+    <!-- Category Pill with Live Indicator -->
     <g transform="translate(52, 2)">
-      <rect width="190.79999999999998" height="20" rx="4" fill="#0284C7" fill-opacity="0.12" stroke="#0284C7" stroke-opacity="0.35" stroke-width="1" />
-      <text x="95.39999999999999" y="13.5" font-family="'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace" font-size="9" font-weight="600" fill="#38BDF8" text-anchor="middle" letter-spacing="0.8">ENTERPRISE ERP &amp; WORKFLOWS</text>
+      <rect width="200.79999999999998" height="20" rx="4" fill="#0284C7" fill-opacity="0.14" stroke="#0284C7" stroke-opacity="0.4" stroke-width="1" />
+      <circle cx="8" cy="10" r="2.5" fill="#38BDF8" class="pulse-core" />
+      <text x="104.39999999999999" y="13.5" font-family="'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace" font-size="9" font-weight="600" fill="#38BDF8" text-anchor="middle" letter-spacing="0.8">ENTERPRISE ERP &amp; WORKFLOWS</text>
     </g>
 
+    <!-- Project Title -->
     <text x="52" y="36" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#F8FAFC">DevERP</text>
   </g>
 
@@ -72,7 +105,7 @@
         </g>
 
   <!-- External link icon arrow in top right -->
-  <g transform="translate(402, 22)" stroke="#64748B" stroke-width="1.5" fill="none">
+  <g transform="translate(402, 22)" stroke="#38BDF8" stroke-width="1.5" fill="none" opacity="0.8">
     <path d="M0 10 L10 0 M3 0 H10 V7" />
   </g>
 </svg>
