@@ -28,7 +28,7 @@ const userName =
   process.argv[2] ||
   process.env.GITHUB_USER ||
   process.env.GITHUB_REPOSITORY_OWNER ||
-  "hazemelerefey";
+  "IbrahimElmasry";
 
 function ensureSnk() {
   if (fs.existsSync(path.join(SNK_DIR, "packages", "svg-creator"))) return;

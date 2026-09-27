@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-label="Hazem Elerefy — Data Analyst · BI · Strong Frontend">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-label="Ibrahim Tarek — Lead Software Engineer · ASP.NET &amp; Full Stack · UI Architect">
   <defs>
     <!-- Background gradient: deep space violet -->
     <radialGradient id="bg" cx="50%" cy="60%" r="75%">
@@ -204,28 +204,28 @@
     </g>
   </g>
 
-  <!-- Title block: HAZEM ELEREFY (with 3D extrude shadow + gradient + glow) -->
+  <!-- Title block: IBRAHIM TAREK (with 3D extrude shadow + gradient + glow) -->
   <g transform="translate(600 215)" text-anchor="middle" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-weight="800">
     <!-- Subtle 3D extruded shadows -->
-    <text y="0" font-size="78" letter-spacing="6" fill="#1d1042" opacity=".55" transform="translate(6 6)">HAZEM ELEREFY</text>
-    <text y="0" font-size="78" letter-spacing="6" fill="#0b0427" opacity=".75" transform="translate(3 3)">HAZEM ELEREFY</text>
+    <text y="0" font-size="78" letter-spacing="6" fill="#1d1042" opacity=".55" transform="translate(6 6)">IBRAHIM TAREK</text>
+    <text y="0" font-size="78" letter-spacing="6" fill="#0b0427" opacity=".75" transform="translate(3 3)">IBRAHIM TAREK</text>
     <!-- glow halo behind title -->
-    <text y="0" font-size="78" letter-spacing="6" fill="url(#hgrad)" filter="url(#glow)" opacity=".55">HAZEM ELEREFY</text>
+    <text y="0" font-size="78" letter-spacing="6" fill="url(#hgrad)" filter="url(#glow)" opacity=".55">IBRAHIM TAREK</text>
     <!-- main title -->
-    <text y="0" font-size="78" letter-spacing="6" fill="url(#hgrad)">HAZEM ELEREFY</text>
+    <text y="0" font-size="78" letter-spacing="6" fill="url(#hgrad)">IBRAHIM TAREK</text>
   </g>
 
   <!-- Tagline pill -->
   <g transform="translate(600 268)" text-anchor="middle">
-    <rect x="-280" y="-22" width="560" height="38" rx="19" fill="#0b0427" stroke="#a78bfa" stroke-opacity=".55"/>
-    <text font-family="JetBrains Mono, ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#cbd5e1" y="4" letter-spacing="2">
-      <tspan fill="#f472b6">▣</tspan>  DATA ANALYST  ·  BI  ·  STRONG FRONTEND  <tspan fill="#22d3ee">▣</tspan>
+    <rect x="-340" y="-22" width="680" height="38" rx="19" fill="#0b0427" stroke="#a78bfa" stroke-opacity=".55"/>
+    <text font-family="JetBrains Mono, ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#cbd5e1" y="4" letter-spacing="2">
+      <tspan fill="#f472b6">▣</tspan>  LEAD SOFTWARE ENGINEER  ·  ASP.NET &amp; FULL STACK  <tspan fill="#22d3ee">▣</tspan>
     </text>
   </g>
 
   <!-- Status / coords HUD -->
   <g transform="translate(40 40)" font-family="JetBrains Mono, ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#94a3b8">
-    <text>SYS / hazemelerefey</text>
+    <text>SYS / IbrahimElmasry</text>
     <text y="16" fill="#22d3ee">[ ONLINE ]</text>
     <text y="32">lat 30.04° · lon 31.23°</text>
   </g>
